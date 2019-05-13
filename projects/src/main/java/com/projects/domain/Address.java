@@ -1,5 +1,6 @@
 package com.projects.domain;
 
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -137,19 +138,15 @@ public class Address implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Address)) {
             return false;
         }
-        Address address = (Address) o;
-        if (address.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), address.getId());
+        return id != null && id.equals(((Address) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

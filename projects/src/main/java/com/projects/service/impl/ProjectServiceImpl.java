@@ -7,14 +7,16 @@ import com.projects.service.dto.ProjectDTO;
 import com.projects.service.mapper.ProjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 /**
- * Service Implementation for managing Project.
+ * Service Implementation for managing {@link Project}.
  */
 @Service
 @Transactional
@@ -34,8 +36,8 @@ public class ProjectServiceImpl implements ProjectService {
     /**
      * Save a project.
      *
-     * @param projectDTO the entity to save
-     * @return the persisted entity
+     * @param projectDTO the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public ProjectDTO save(ProjectDTO projectDTO) {
@@ -48,8 +50,8 @@ public class ProjectServiceImpl implements ProjectService {
     /**
      * Get all the projects.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -59,28 +61,29 @@ public class ProjectServiceImpl implements ProjectService {
             .map(projectMapper::toDto);
     }
 
+
     /**
      * Get one project by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
-    public ProjectDTO findOne(Long id) {
+    public Optional<ProjectDTO> findOne(Long id) {
         log.debug("Request to get Project : {}", id);
-        Project project = projectRepository.findOne(id);
-        return projectMapper.toDto(project);
+        return projectRepository.findById(id)
+            .map(projectMapper::toDto);
     }
 
     /**
      * Delete the project by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Project : {}", id);
-        projectRepository.delete(id);
+        projectRepository.deleteById(id);
     }
 }

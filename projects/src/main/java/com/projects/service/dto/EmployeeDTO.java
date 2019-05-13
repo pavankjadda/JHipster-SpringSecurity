@@ -1,15 +1,11 @@
 package com.projects.service.dto;
-
-
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 import javax.persistence.Lob;
 
 /**
- * A DTO for the Employee entity.
+ * A DTO for the {@link com.projects.domain.Employee} entity.
  */
 public class EmployeeDTO implements Serializable {
 
@@ -27,14 +23,15 @@ public class EmployeeDTO implements Serializable {
 
     @Lob
     private byte[] photo;
-    private String photoContentType;
 
+    private String photoContentType;
     @Lob
     private byte[] description;
-    private String descriptionContentType;
 
+    private String descriptionContentType;
     @Lob
     private byte[] notes;
+
     private String notesContentType;
 
     private Long addressId;
@@ -155,7 +152,7 @@ public class EmployeeDTO implements Serializable {
         }
 
         EmployeeDTO employeeDTO = (EmployeeDTO) o;
-        if(employeeDTO.getId() == null || getId() == null) {
+        if (employeeDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), employeeDTO.getId());
@@ -177,6 +174,8 @@ public class EmployeeDTO implements Serializable {
             ", photo='" + getPhoto() + "'" +
             ", description='" + getDescription() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", address=" + getAddressId() +
+            ", address='" + getAddressStreetName() + "'" +
             "}";
     }
 }

@@ -1,13 +1,12 @@
 package com.projects.repository;
 
 import com.projects.domain.Department;
-import org.springframework.stereotype.Repository;
-
 import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.Repository;
 
 
 /**
- * Spring Data JPA repository for the Department entity.
+ * Spring Data  repository for the Department entity.
  */
 @SuppressWarnings("unused")
 @Repository

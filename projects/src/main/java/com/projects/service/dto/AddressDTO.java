@@ -1,12 +1,10 @@
 package com.projects.service.dto;
-
-
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the Address entity.
+ * A DTO for the {@link com.projects.domain.Address} entity.
  */
 public class AddressDTO implements Serializable {
 
@@ -26,6 +24,7 @@ public class AddressDTO implements Serializable {
     private String state;
 
     private String country;
+
 
     public Long getId() {
         return id;
@@ -93,7 +92,7 @@ public class AddressDTO implements Serializable {
         }
 
         AddressDTO addressDTO = (AddressDTO) o;
-        if(addressDTO.getId() == null || getId() == null) {
+        if (addressDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), addressDTO.getId());

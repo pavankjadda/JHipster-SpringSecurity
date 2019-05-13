@@ -6,7 +6,7 @@ import com.projects.service.dto.EmployeeDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity Employee and its DTO EmployeeDTO.
+ * Mapper for the entity {@link Employee} and its DTO {@link EmployeeDTO}.
  */
 @Mapper(componentModel = "spring", uses = {AddressMapper.class})
 public interface EmployeeMapper extends EntityMapper<EmployeeDTO, Employee> {

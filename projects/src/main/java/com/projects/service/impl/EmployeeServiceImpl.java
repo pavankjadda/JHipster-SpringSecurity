@@ -7,14 +7,16 @@ import com.projects.service.dto.EmployeeDTO;
 import com.projects.service.mapper.EmployeeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 /**
- * Service Implementation for managing Employee.
+ * Service Implementation for managing {@link Employee}.
  */
 @Service
 @Transactional
@@ -34,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * Save a employee.
      *
-     * @param employeeDTO the entity to save
-     * @return the persisted entity
+     * @param employeeDTO the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public EmployeeDTO save(EmployeeDTO employeeDTO) {
@@ -48,8 +50,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * Get all the employees.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -59,28 +61,29 @@ public class EmployeeServiceImpl implements EmployeeService {
             .map(employeeMapper::toDto);
     }
 
+
     /**
      * Get one employee by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
-    public EmployeeDTO findOne(Long id) {
+    public Optional<EmployeeDTO> findOne(Long id) {
         log.debug("Request to get Employee : {}", id);
-        Employee employee = employeeRepository.findOne(id);
-        return employeeMapper.toDto(employee);
+        return employeeRepository.findById(id)
+            .map(employeeMapper::toDto);
     }
 
     /**
      * Delete the employee by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Employee : {}", id);
-        employeeRepository.delete(id);
+        employeeRepository.deleteById(id);
     }
 }

@@ -4,23 +4,38 @@ import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
+import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
+@Component
 public class AuthorizationHeaderUtil {
 
-    public static Optional<String> getAuthorizationHeader() {
+    private final OAuth2AuthorizedClientService clientService;
+
+    public AuthorizationHeaderUtil(OAuth2AuthorizedClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public Optional<String> getAuthorizationHeader() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+        OAuth2AuthorizedClient client = clientService.loadAuthorizedClient(
+            oauthToken.getAuthorizedClientRegistrationId(),
+            oauthToken.getName());
 
-        Object details = authentication.getDetails();
-        if (details != null && details instanceof OAuth2AuthenticationDetails) {
-            OAuth2AuthenticationDetails oAuth2AuthenticationDetails =
-                (OAuth2AuthenticationDetails) details;
+        OAuth2AccessToken accessToken = client.getAccessToken();
 
-            return Optional.of(String.format("%s %s", oAuth2AuthenticationDetails.getTokenType(),
-                oAuth2AuthenticationDetails.getTokenValue()));
-
-        } else {
+        if (accessToken == null) {
             return Optional.empty();
+        } else {
+            String tokenType = accessToken.getTokenType().getValue();
+            String authorizationHeaderValue = String.format("%s %s", tokenType, accessToken.getTokenValue());
+            return Optional.of(authorizationHeaderValue);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.projects.domain;
 
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -55,19 +56,15 @@ public class Department implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Department)) {
             return false;
         }
-        Department department = (Department) o;
-        if (department.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), department.getId());
+        return id != null && id.equals(((Department) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override
