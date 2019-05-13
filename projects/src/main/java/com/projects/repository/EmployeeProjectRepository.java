@@ -1,13 +1,12 @@
 package com.projects.repository;
 
 import com.projects.domain.EmployeeProject;
-import org.springframework.stereotype.Repository;
-
 import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.Repository;
 
 
 /**
- * Spring Data JPA repository for the EmployeeProject entity.
+ * Spring Data  repository for the EmployeeProject entity.
  */
 @SuppressWarnings("unused")
 @Repository

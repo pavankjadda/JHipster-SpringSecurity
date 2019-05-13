@@ -1,40 +1,43 @@
 package com.projects.service;
 
 import com.projects.service.dto.EmployeeProjectDTO;
+
 import java.util.List;
+import java.util.Optional;
 
 /**
- * Service Interface for managing EmployeeProject.
+ * Service Interface for managing {@link com.projects.domain.EmployeeProject}.
  */
 public interface EmployeeProjectService {
 
     /**
      * Save a employeeProject.
      *
-     * @param employeeProjectDTO the entity to save
-     * @return the persisted entity
+     * @param employeeProjectDTO the entity to save.
+     * @return the persisted entity.
      */
     EmployeeProjectDTO save(EmployeeProjectDTO employeeProjectDTO);
 
     /**
      * Get all the employeeProjects.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     List<EmployeeProjectDTO> findAll();
+
 
     /**
      * Get the "id" employeeProject.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
-    EmployeeProjectDTO findOne(Long id);
+    Optional<EmployeeProjectDTO> findOne(Long id);
 
     /**
      * Delete the "id" employeeProject.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 }

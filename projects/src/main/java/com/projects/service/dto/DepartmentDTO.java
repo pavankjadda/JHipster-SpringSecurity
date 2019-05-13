@@ -1,12 +1,10 @@
 package com.projects.service.dto;
-
-
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the Department entity.
+ * A DTO for the {@link com.projects.domain.Department} entity.
  */
 public class DepartmentDTO implements Serializable {
 
@@ -14,6 +12,7 @@ public class DepartmentDTO implements Serializable {
 
     @NotNull
     private String departmentName;
+
 
     public Long getId() {
         return id;
@@ -41,7 +40,7 @@ public class DepartmentDTO implements Serializable {
         }
 
         DepartmentDTO departmentDTO = (DepartmentDTO) o;
-        if(departmentDTO.getId() == null || getId() == null) {
+        if (departmentDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), departmentDTO.getId());

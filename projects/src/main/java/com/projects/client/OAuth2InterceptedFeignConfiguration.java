@@ -1,17 +1,15 @@
 package com.projects.client;
 
-import java.io.IOException;
-
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import feign.RequestInterceptor;
 
-@Configuration
+import com.projects.security.oauth2.AuthorizationHeaderUtil;
+
 public class OAuth2InterceptedFeignConfiguration {
 
     @Bean(name = "oauth2RequestInterceptor")
-    public RequestInterceptor getOAuth2RequestInterceptor() throws IOException {
-        return new TokenRelayRequestInterceptor();
+    public RequestInterceptor getOAuth2RequestInterceptor(AuthorizationHeaderUtil authorizationHeaderUtil) {
+        return new TokenRelayRequestInterceptor(authorizationHeaderUtil);
     }
 }

@@ -1,42 +1,46 @@
 package com.projects.service;
 
 import com.projects.service.dto.EmployeeDTO;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 /**
- * Service Interface for managing Employee.
+ * Service Interface for managing {@link com.projects.domain.Employee}.
  */
 public interface EmployeeService {
 
     /**
      * Save a employee.
      *
-     * @param employeeDTO the entity to save
-     * @return the persisted entity
+     * @param employeeDTO the entity to save.
+     * @return the persisted entity.
      */
     EmployeeDTO save(EmployeeDTO employeeDTO);
 
     /**
      * Get all the employees.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<EmployeeDTO> findAll(Pageable pageable);
+
 
     /**
      * Get the "id" employee.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
-    EmployeeDTO findOne(Long id);
+    Optional<EmployeeDTO> findOne(Long id);
 
     /**
      * Delete the "id" employee.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 }

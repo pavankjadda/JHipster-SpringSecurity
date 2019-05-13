@@ -1,40 +1,43 @@
 package com.projects.service;
 
 import com.projects.service.dto.DepartmentDTO;
+
 import java.util.List;
+import java.util.Optional;
 
 /**
- * Service Interface for managing Department.
+ * Service Interface for managing {@link com.projects.domain.Department}.
  */
 public interface DepartmentService {
 
     /**
      * Save a department.
      *
-     * @param departmentDTO the entity to save
-     * @return the persisted entity
+     * @param departmentDTO the entity to save.
+     * @return the persisted entity.
      */
     DepartmentDTO save(DepartmentDTO departmentDTO);
 
     /**
      * Get all the departments.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     List<DepartmentDTO> findAll();
+
 
     /**
      * Get the "id" department.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
-    DepartmentDTO findOne(Long id);
+    Optional<DepartmentDTO> findOne(Long id);
 
     /**
      * Delete the "id" department.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 }

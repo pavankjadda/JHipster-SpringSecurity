@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.projects"
     },
-    "jhipsterVersion": "4.14.1",
+    "jhipsterVersion": "6.0.1",
     "baseName": "projects",
     "packageName": "com.projects",
     "packageFolder": "com/projects",
@@ -28,6 +28,9 @@
     "jhiPrefix": "jhi",
     "clientPackageManager": "yarn",
     "skipClient": true,
-    "skipUserManagement": true
+    "skipUserManagement": true,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   }
 }

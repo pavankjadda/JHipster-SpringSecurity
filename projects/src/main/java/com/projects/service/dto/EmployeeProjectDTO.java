@@ -1,17 +1,14 @@
 package com.projects.service.dto;
-
-
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
- * A DTO for the EmployeeProject entity.
+ * A DTO for the {@link com.projects.domain.EmployeeProject} entity.
  */
 public class EmployeeProjectDTO implements Serializable {
 
     private Long id;
+
 
     private Long employeeId;
 
@@ -71,7 +68,7 @@ public class EmployeeProjectDTO implements Serializable {
         }
 
         EmployeeProjectDTO employeeProjectDTO = (EmployeeProjectDTO) o;
-        if(employeeProjectDTO.getId() == null || getId() == null) {
+        if (employeeProjectDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), employeeProjectDTO.getId());
@@ -86,6 +83,10 @@ public class EmployeeProjectDTO implements Serializable {
     public String toString() {
         return "EmployeeProjectDTO{" +
             "id=" + getId() +
+            ", employee=" + getEmployeeId() +
+            ", employee='" + getEmployeeFirstName() + "'" +
+            ", project=" + getProjectId() +
+            ", project='" + getProjectProjectTitle() + "'" +
             "}";
     }
 }

@@ -7,15 +7,17 @@ import com.projects.service.dto.EmployeeProjectDTO;
 import com.projects.service.mapper.EmployeeProjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Service Implementation for managing EmployeeProject.
+ * Service Implementation for managing {@link EmployeeProject}.
  */
 @Service
 @Transactional
@@ -35,8 +37,8 @@ public class EmployeeProjectServiceImpl implements EmployeeProjectService {
     /**
      * Save a employeeProject.
      *
-     * @param employeeProjectDTO the entity to save
-     * @return the persisted entity
+     * @param employeeProjectDTO the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public EmployeeProjectDTO save(EmployeeProjectDTO employeeProjectDTO) {
@@ -49,7 +51,7 @@ public class EmployeeProjectServiceImpl implements EmployeeProjectService {
     /**
      * Get all the employeeProjects.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -60,28 +62,29 @@ public class EmployeeProjectServiceImpl implements EmployeeProjectService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
+
     /**
      * Get one employeeProject by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
-    public EmployeeProjectDTO findOne(Long id) {
+    public Optional<EmployeeProjectDTO> findOne(Long id) {
         log.debug("Request to get EmployeeProject : {}", id);
-        EmployeeProject employeeProject = employeeProjectRepository.findOne(id);
-        return employeeProjectMapper.toDto(employeeProject);
+        return employeeProjectRepository.findById(id)
+            .map(employeeProjectMapper::toDto);
     }
 
     /**
      * Delete the employeeProject by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete EmployeeProject : {}", id);
-        employeeProjectRepository.delete(id);
+        employeeProjectRepository.deleteById(id);
     }
 }

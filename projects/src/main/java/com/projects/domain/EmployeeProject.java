@@ -1,5 +1,7 @@
 package com.projects.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -23,9 +25,11 @@ public class EmployeeProject implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties("employeeProjects")
     private Employee employee;
 
     @ManyToOne
+    @JsonIgnoreProperties("employeeProjects")
     private Project project;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -69,19 +73,15 @@ public class EmployeeProject implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof EmployeeProject)) {
             return false;
         }
-        EmployeeProject employeeProject = (EmployeeProject) o;
-        if (employeeProject.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), employeeProject.getId());
+        return id != null && id.equals(((EmployeeProject) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

@@ -1,14 +1,10 @@
 package com.projects.service.dto;
-
-
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
- * A DTO for the Project entity.
+ * A DTO for the {@link com.projects.domain.Project} entity.
  */
 public class ProjectDTO implements Serializable {
 
@@ -19,6 +15,7 @@ public class ProjectDTO implements Serializable {
 
     @NotNull
     private String projectTitle;
+
 
     private Long departmentId;
 
@@ -74,7 +71,7 @@ public class ProjectDTO implements Serializable {
         }
 
         ProjectDTO projectDTO = (ProjectDTO) o;
-        if(projectDTO.getId() == null || getId() == null) {
+        if (projectDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), projectDTO.getId());
@@ -91,6 +88,8 @@ public class ProjectDTO implements Serializable {
             "id=" + getId() +
             ", projectName='" + getProjectName() + "'" +
             ", projectTitle='" + getProjectTitle() + "'" +
+            ", department=" + getDepartmentId() +
+            ", department='" + getDepartmentDepartmentName() + "'" +
             "}";
     }
 }
