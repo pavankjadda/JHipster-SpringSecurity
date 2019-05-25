@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.gateway"
     },
-    "jhipsterVersion": "4.14.1",
+    "jhipsterVersion": "6.0.1",
     "baseName": "gateway",
     "packageName": "com.gateway",
     "packageFolder": "com/gateway",
@@ -27,6 +27,10 @@
     "applicationType": "gateway",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "clientTheme": "none",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
   }
 }
