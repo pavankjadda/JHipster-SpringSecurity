@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employee">
+            <h2><span>Employee</span> {{employee.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>First Name</span></dt>
+                <dd>
+                    <span>{{employee.firstName}}</span>
+                </dd>
+                <dt><span>Last Name</span></dt>
+                <dd>
+                    <span>{{employee.lastName}}</span>
+                </dd>
+                <dt><span>Middle Name</span></dt>
+                <dd>
+                    <span>{{employee.middleName}}</span>
+                </dd>
+                <dt><span>Salary</span></dt>
+                <dd>
+                    <span>{{employee.salary}}</span>
+                </dd>
+                <dt><span>Photo</span></dt>
+                <dd>
+                    <div *ngIf="employee.photo">
+                        <a (click)="openFile(employee.photoContentType, employee.photo)">
+                            <img [src]="'data:' + employee.photoContentType + ';base64,' + employee.photo" style="max-width: 100%;" alt="employee image"/>
+                        </a>
+                        {{employee.photoContentType}}, {{byteSize(employee.photo)}}
+                    </div>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <div *ngIf="employee.description">
+                        <a (click)="openFile(employee.descriptionContentType, employee.description)">open</a>
+                        {{employee.descriptionContentType}}, {{byteSize(employee.description)}}
+                    </div>
+                </dd>
+                <dt><span>Notes</span></dt>
+                <dd>
+                    <div *ngIf="employee.notes">
+                        <a (click)="openFile(employee.notesContentType, employee.notes)">open</a>
+                        {{employee.notesContentType}}, {{byteSize(employee.notes)}}
+                    </div>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <div *ngIf="employee.addressId">
+                        <a [routerLink]="['/address', employee.addressId, 'view']">{{employee.addressStreetName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employee', employee.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
